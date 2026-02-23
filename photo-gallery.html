@@ -18,14 +18,14 @@
     <div class="top-bar">
         <div class="container">
             <div class="top-bar-left">
-                <div class="item"><i class="fas fa-phone-alt"></i><span>0543-2612688</span></div>
-                <div class="item"><i class="fas fa-envelope"></i><span>manojkumarcholapur@gmail.com</span></div>
-                <div class="item"><i class="fas fa-map-marker-alt"></i><span>Dharsauna, Cholapur, Varanasi</span></div>
+                <div class="item"><i class="fas fa-phone-alt"></i><a href="tel:05432612688">0543-2612688</a></div>
+                <div class="item"><i class="fas fa-envelope"></i><a href="mailto:manojkumarcholapur@gmail.com">manojkumarcholapur@gmail.com</a></div>
+                <div class="item"><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/maps/search/?api=1&query=Gyandeep+Public+School+Cholapur+Varanasi" target="_blank">Dharsauna, Cholapur, Varanasi</a></div>
             </div>
             <div class="top-bar-right">
-                <a href="#" id="student-app"><i class="fas fa-mobile-alt"></i> Student App</a>
+                <a href="https://app.box.com/s/b6nhtwulw6lh556u9eyx1wxj9s7gy1gz" id="student-app" target="_blank"><i class="fas fa-mobile-alt"></i> Student App</a>
                 <span class="separator">|</span>
-                <a href="#" id="teacher-app"><i class="fas fa-chalkboard-teacher"></i> Teacher App</a>
+                <a href="https://app.box.com/s/qtyimzew5dre04y04ent1q1pde77vbm4" id="teacher-app" target="_blank"><i class="fas fa-chalkboard-teacher"></i> Teacher App</a>
                 <span class="separator">|</span>
                 <a href="#" class="online-btn" id="online-classes"><i class="fas fa-video"></i> Online Classes</a>
             </div>
@@ -50,7 +50,7 @@
                             <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
                             <div class="info-text">
                                 <small>Call Us</small>
-                                <strong>9838173720</strong>
+                                <strong><a href="tel:9838173720" style="color: inherit;">9838173720</a></strong>
                             </div>
                         </div>
                     </div>
@@ -98,67 +98,583 @@
         </div>
     </section>
 
+    <!-- ===== GALLERY INLINE STYLES ===== -->
+    <style>
+        /* Category Filter Tabs */
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 45px;
+            flex-wrap: wrap;
+        }
+        .gallery-tab {
+            padding: 12px 32px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            background: var(--white);
+            color: var(--text);
+            font-family: 'Lato', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gallery-tab:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .gallery-tab.active {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: var(--white);
+            border-color: var(--teal);
+            box-shadow: 0 4px 15px rgba(11, 122, 109, 0.3);
+        }
+        .gallery-tab i {
+            font-size: 1rem;
+        }
+
+        /* Photo Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-card {
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+        .gallery-card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-card:hover .gallery-card-img {
+            transform: scale(1.05);
+        }
+        .gallery-card-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(transparent 40%, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        .gallery-card:hover .gallery-card-overlay {
+            opacity: 1;
+        }
+        .gallery-card-overlay h4 {
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .gallery-card-overlay .zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.35s ease;
+        }
+        .gallery-card:hover .gallery-card-overlay .zoom-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .gallery-card-caption {
+            padding: 14px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .gallery-card-caption i {
+            color: var(--teal);
+            font-size: 0.8rem;
+        }
+
+        /* Category Badge */
+        .category-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 85vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: lightboxIn 0.3s ease;
+        }
+        @keyframes lightboxIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: rotate(90deg);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .lightbox-prev { left: 25px; }
+        .lightbox-next { right: 25px; }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 25px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+        .lightbox-counter {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .gallery-card-img {
+                height: 160px;
+            }
+            .gallery-tab {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            .lightbox-img {
+                max-width: 95vw;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
     <!-- ===== GALLERY CONTENT ===== -->
     <section class="page-content section-padding">
         <div class="container">
-            <div class="photo-gallery-grid">
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop" alt="School Building">
-                    <div class="photo-overlay">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <span class="section-badge"><i class="fas fa-images"></i> Our Memories</span>
+                <h2 class="section-title" style="text-align: center;">School Photo Gallery</h2>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-filter="all" id="tab-all">
+                    <i class="fas fa-th"></i> All Photos
+                </button>
+                <button class="gallery-tab" data-filter="events" id="tab-events">
+                    <i class="fas fa-camera"></i> Photo Gallery
+                </button>
+                <button class="gallery-tab" data-filter="campus" id="tab-campus">
+                    <i class="fas fa-school"></i> School Campus
+                </button>
+            </div>
+
+            <!-- Photos Grid -->
+            <div class="gallery-grid" id="gallery-grid">
+
+                <!-- ===== PHOTO GALLERY (Events) - 15 Images ===== -->
+                <div class="gallery-card" data-category="events" onclick="openLightbox(0)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/01.jpg" alt="School Event 1">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 1</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 1</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(1)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/02.jpg" alt="School Event 2">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 2</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 2</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(2)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/03.jpg" alt="School Event 3">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 3</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 3</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(3)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/04.jpg" alt="School Event 4">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 4</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 4</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(4)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/05.jpg" alt="School Event 5">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 5</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 5</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(5)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/06.jpg" alt="School Event 6">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 6</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 6</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(6)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/07.jpg" alt="School Event 7">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 7</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 7</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(7)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/08.jpg" alt="School Event 8">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 8</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 8</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(8)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/09.jpg" alt="School Event 9">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 9</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 9</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(9)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/10.jpg" alt="School Event 10">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 10</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 10</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(10)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/11.jpg" alt="School Event 11">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 11</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 11</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(11)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/12.jpg" alt="School Event 12">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 12</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 12</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(12)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/13.jpg" alt="School Event 13">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 13</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 13</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(13)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/14.jpg" alt="School Event 14">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 14</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 14</div>
+                </div>
+
+                <div class="gallery-card" data-category="events" onclick="openLightbox(14)">
+                    <span class="category-badge">Photo Gallery</span>
+                    <img class="gallery-card-img" src="./assets/images/photo-gallery/15.jpg" alt="School Event 15">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Event 15</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-camera"></i> School Event 15</div>
+                </div>
+
+                <!-- ===== SCHOOL CAMPUS - 4 Images ===== -->
+                <div class="gallery-card" data-category="campus" onclick="openLightbox(15)">
+                    <span class="category-badge" style="background: linear-gradient(135deg, var(--orange), var(--orange-dark));">School Campus</span>
+                    <img class="gallery-card-img" src="./assets/images/school-campus/01.jpg" alt="School Building">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                         <h4>School Building</h4>
                     </div>
+                    <div class="gallery-card-caption"><i class="fas fa-school"></i> School Building</div>
                 </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=300&fit=crop" alt="Library">
-                    <div class="photo-overlay">
+
+                <div class="gallery-card" data-category="campus" onclick="openLightbox(16)">
+                    <span class="category-badge" style="background: linear-gradient(135deg, var(--orange), var(--orange-dark));">School Campus</span>
+                    <img class="gallery-card-img" src="./assets/images/school-campus/02.jpg" alt="School Entrance">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                        <h4>School Entrance</h4>
+                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-school"></i> School Entrance</div>
+                </div>
+
+                <div class="gallery-card" data-category="campus" onclick="openLightbox(17)">
+                    <span class="category-badge" style="background: linear-gradient(135deg, var(--orange), var(--orange-dark));">School Campus</span>
+                    <img class="gallery-card-img" src="./assets/images/school-campus/03.jpg" alt="Library">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                         <h4>Library</h4>
                     </div>
+                    <div class="gallery-card-caption"><i class="fas fa-school"></i> Library</div>
                 </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop" alt="Classroom">
-                    <div class="photo-overlay">
+
+                <div class="gallery-card" data-category="campus" onclick="openLightbox(18)">
+                    <span class="category-badge" style="background: linear-gradient(135deg, var(--orange), var(--orange-dark));">School Campus</span>
+                    <img class="gallery-card-img" src="./assets/images/school-campus/04.jpg" alt="Smart Classroom">
+                    <div class="gallery-card-overlay">
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
                         <h4>Smart Classroom</h4>
                     </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=300&fit=crop" alt="Computer Lab">
-                    <div class="photo-overlay">
-                        <h4>Computer Lab</h4>
-                    </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop" alt="Sports">
-                    <div class="photo-overlay">
-                        <h4>Sports Ground</h4>
-                    </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=400&h=300&fit=crop" alt="Annual Day">
-                    <div class="photo-overlay">
-                        <h4>Annual Day</h4>
-                    </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=300&fit=crop" alt="Science Lab">
-                    <div class="photo-overlay">
-                        <h4>Science Lab</h4>
-                    </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&h=300&fit=crop" alt="Students">
-                    <div class="photo-overlay">
-                        <h4>Our Students</h4>
-                    </div>
-                </div>
-                <div class="photo-gallery-item">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=300&fit=crop" alt="Independence Day">
-                    <div class="photo-overlay">
-                        <h4>Independence Day</h4>
-                    </div>
+                    <div class="gallery-card-caption"><i class="fas fa-school"></i> Smart Classroom</div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ===== LIGHTBOX MODAL ===== -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Preview">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <!-- ===== GALLERY SCRIPT ===== -->
+    <script>
+        // Gallery Data
+        const galleryImages = [
+            // Photo Gallery (Events) - 15 Images
+            { src: './assets/images/photo-gallery/01.jpg', title: 'School Event 1', cat: 'events' },
+            { src: './assets/images/photo-gallery/02.jpg', title: 'School Event 2', cat: 'events' },
+            { src: './assets/images/photo-gallery/03.jpg', title: 'School Event 3', cat: 'events' },
+            { src: './assets/images/photo-gallery/04.jpg', title: 'School Event 4', cat: 'events' },
+            { src: './assets/images/photo-gallery/05.jpg', title: 'School Event 5', cat: 'events' },
+            { src: './assets/images/photo-gallery/06.jpg', title: 'School Event 6', cat: 'events' },
+            { src: './assets/images/photo-gallery/07.jpg', title: 'School Event 7', cat: 'events' },
+            { src: './assets/images/photo-gallery/08.jpg', title: 'School Event 8', cat: 'events' },
+            { src: './assets/images/photo-gallery/09.jpg', title: 'School Event 9', cat: 'events' },
+            { src: './assets/images/photo-gallery/10.jpg', title: 'School Event 10', cat: 'events' },
+            { src: './assets/images/photo-gallery/11.jpg', title: 'School Event 11', cat: 'events' },
+            { src: './assets/images/photo-gallery/12.jpg', title: 'School Event 12', cat: 'events' },
+            { src: './assets/images/photo-gallery/13.jpg', title: 'School Event 13', cat: 'events' },
+            { src: './assets/images/photo-gallery/14.jpg', title: 'School Event 14', cat: 'events' },
+            { src: './assets/images/photo-gallery/15.jpg', title: 'School Event 15', cat: 'events' },
+            
+            // School Campus - 4 Images
+            { src: './assets/images/school-campus/01.jpg', title: 'School Building', cat: 'campus' },
+            { src: './assets/images/school-campus/02.jpg', title: 'School Entrance', cat: 'campus' },
+            { src: './assets/images/school-campus/03.jpg', title: 'Library', cat: 'campus' },
+            { src: './assets/images/school-campus/04.jpg', title: 'Smart Classroom', cat: 'campus' }
+        ];
+
+        let currentIndex = 0;
+        let visibleImages = [...galleryImages];
+
+        // Category Filter
+        document.querySelectorAll('.gallery-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                const cards = document.querySelectorAll('.gallery-card');
+                let visIdx = 0;
+                visibleImages = [];
+                cards.forEach((card, i) => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        card.setAttribute('onclick', `openLightbox(${visIdx})`);
+                        visibleImages.push(galleryImages[i]);
+                        visIdx++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const img = visibleImages[currentIndex];
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-caption').textContent = img.title;
+            document.getElementById('lightbox-counter').textContent = `${currentIndex + 1} / ${visibleImages.length}`;
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
+            updateLightbox();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % visibleImages.length;
+            updateLightbox();
+        }
+
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
+        document.getElementById('lightbox-next').addEventListener('click', nextImage);
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+    </script>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" id="footer">
@@ -207,11 +723,11 @@
                     <h4>Contact Us</h4>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone-alt"></i>
-                        <span>Mobile: 9838173720</span>
+                        <span>Mobile: <a href="tel:9838173720">9838173720</a></span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>Helpline: 0543-2612688</span>
+                        <span>Helpline: <a href="tel:05432612688">0543-2612688</a></span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope"></i>
