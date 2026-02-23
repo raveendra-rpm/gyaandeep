@@ -18,14 +18,39 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
   if (mobileOverlay) mobileOverlay.addEventListener('click', toggleMobileMenu);
 
-  // Close menu on link click (mobile)
-  navMenu.querySelectorAll('a').forEach(link => {
+  // Dropdown toggle on click (desktop & mobile)
+  navMenu.querySelectorAll('.dropdown > a').forEach(link => {
     link.addEventListener('click', function (e) {
-      if (this.parentElement.classList.contains('dropdown') && window.innerWidth <= 768) {
-        e.preventDefault();
-        this.parentElement.classList.toggle('active');
-        return;
+      e.preventDefault();
+      const parent = this.parentElement;
+      // Close other dropdowns
+      navMenu.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== parent) d.classList.remove('active');
+      });
+      parent.classList.toggle('active');
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.dropdown')) {
+      navMenu.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    }
+  });
+
+  // Close mobile menu on non-dropdown link click
+  navMenu.querySelectorAll('li:not(.dropdown) > a').forEach(link => {
+    link.addEventListener('click', function () {
+      if (navMenu.classList.contains('active')) {
+        toggleMobileMenu();
       }
+    });
+  });
+
+  // Close mobile menu on dropdown sub-link click
+  navMenu.querySelectorAll('.dropdown-menu a').forEach(link => {
+    link.addEventListener('click', function () {
+      navMenu.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
       if (navMenu.classList.contains('active')) {
         toggleMobileMenu();
       }
@@ -129,31 +154,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===== Active Nav Link on Scroll =====
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = navMenu.querySelectorAll('a');
+  // Only apply scroll-based highlighting on the home page (index.html)
+  const isHomePage = window.location.pathname.endsWith('index.html') || 
+                     window.location.pathname.endsWith('/') ||
+                     window.location.pathname === '';
+  
+  if (isHomePage) {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = navMenu.querySelectorAll('li:not(.dropdown) > a, .dropdown > a');
 
-  function highlightNav() {
-    let current = '';
-    const offset = 120;
+    function highlightNav() {
+      let current = '';
+      const offset = 120;
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - offset;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-        current = section.getAttribute('id');
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - offset;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (current && href && href.length > 1 && href === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+
+      // If no section matched (at very top), activate Home
+      if (!current || current === 'hero') {
+        navLinks.forEach(link => link.classList.remove('active'));
+        const homeLink = document.getElementById('nav-home');
+        if (homeLink) homeLink.classList.add('active');
       }
-    });
+    }
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      const href = link.getAttribute('href');
-      if (href === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
+    window.addEventListener('scroll', highlightNav);
   }
-
-  window.addEventListener('scroll', highlightNav);
 
   // ===== Navbar Shrink on Scroll =====
   const navbar = document.getElementById('navbar');

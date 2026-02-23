@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transfer Certificate (T.C.) application and download for Gyandeep Public School, Varanasi.">
+    <title>T.C. — Gyandeep Public School Varanasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <div class="item"><i class="fas fa-phone-alt"></i><span>0543-2612688</span></div>
+                <div class="item"><i class="fas fa-envelope"></i><span>manojkumarcholapur@gmail.com</span></div>
+                <div class="item"><i class="fas fa-map-marker-alt"></i><span>Dharsauna, Cholapur, Varanasi</span></div>
+            </div>
+            <div class="top-bar-right">
+                <a href="#" id="student-app"><i class="fas fa-mobile-alt"></i> Student App</a>
+                <span class="separator">|</span>
+                <a href="#" id="teacher-app"><i class="fas fa-chalkboard-teacher"></i> Teacher App</a>
+                <span class="separator">|</span>
+                <a href="#" class="online-btn" id="online-classes"><i class="fas fa-video"></i> Online Classes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="header-brand">
+                    <img src="assets/images/logo.png" alt="Gyandeep Public School Logo" class="header-logo">
+                    <div class="header-text">
+                        <h1>Gyandeep Public School</h1>
+                        <span class="sub">Etiquette Before Education</span>
+                        <span class="affiliation">Affiliated to CBSE, New Delhi | Affiliation No: 2133447</span>
+                    </div>
+                </a>
+                <div class="header-right">
+                    <div class="header-info-items">
+                        <div class="header-info-item">
+                            <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                            <div class="info-text">
+                                <small>Call Us</small>
+                                <strong>9838173720</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" id="nav-home">Home</a></li>
+                <li><a href="about.html" id="nav-about">About Us</a></li>
+                <li><a href="messages.html" id="nav-messages">Messages</a></li>
+                <li><a href="facilities.html" id="nav-facilities">Facilities</a></li>
+                <li><a href="academic.html" id="nav-academic">Academic</a></li>
+                <li><a href="management.html" id="nav-management">Management</a></li>
+                <li><a href="public-disclosure.html" id="nav-disclosure">Public Disclosure</a></li>
+                <li><a href="tc.html" class="active" id="nav-tc">T.C.</a></li>
+                <li class="dropdown">
+                    <a href="#" id="nav-gallery">Gallery <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="photo-gallery.html" id="nav-photo">Photo Gallery</a></li>
+                        <li><a href="video-gallery.html" id="nav-video">Video Gallery</a></li>
+                    </ul>
+                </li>
+                <li class="nav-contact"><a href="contact.html" id="nav-contact"><i class="fas fa-paper-plane"></i> Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- ===== VIEW TC SECTION ===== -->
+    <style>
+        .view-tc-section {
+            background: var(--teal-pale);
+        }
+        .view-tc-card {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .view-tc-header {
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .view-tc-header i {
+            color: var(--orange);
+            font-size: 1.2rem;
+        }
+        .view-tc-header h3 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .view-tc-body {
+            padding: 35px 30px;
+        }
+        .view-tc-form {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .view-tc-form label {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .view-tc-form label span {
+            color: var(--teal);
+            font-weight: 700;
+        }
+        .view-tc-form input[type="text"] {
+            padding: 12px 18px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-family: 'Lato', sans-serif;
+            width: 220px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+        .view-tc-form input[type="text"]:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(11, 122, 109, 0.15);
+        }
+        .view-tc-form .btn-submit {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            font-family: 'Lato', sans-serif;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .view-tc-form .btn-submit:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+        }
+        .view-tc-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+    </style>
+    <section class="page-content section-padding view-tc-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 35px;">
+                <span class="section-badge"><i class="fas fa-search"></i> View TC</span>
+                <h2 class="section-title" style="text-align: center;">View Transfer Certificate</h2>
+            </div>
+            <div class="view-tc-card">
+                <div class="view-tc-header">
+                    <i class="fas fa-file-certificate"></i>
+                    <h3>View TC</h3>
+                </div>
+                <div class="view-tc-body">
+                    <form class="view-tc-form" id="tc-search-form" onsubmit="event.preventDefault(); alert('TC search functionality will be connected to the backend. Entered: ' + document.getElementById('tc-search-input').value);">
+                        <label>Enter (<span>Enrollment No./Admission No./Scholar No.</span>)</label>
+                        <input type="text" id="tc-search-input" placeholder="Enter number..." required>
+                        <button type="submit" class="btn-submit">SUBMIT</button>
+                    </form>
+                    <p class="view-tc-note"><i class="fas fa-info-circle" style="margin-right: 4px;"></i> Enter your Enrollment, Admission or Scholar number to view your Transfer Certificate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Transfer Certificate (T.C.)</h1>
+            <p>Apply for or download your Transfer Certificate</p>
+        </div>
+    </section>
+
+    <!-- ===== TC CONTENT ===== -->
+    <section class="page-content section-padding">
+        <div class="container">
+            <div class="tc-content">
+                <div class="tc-info">
+                    <span class="section-badge"><i class="fas fa-file-alt"></i> T.C. Information</span>
+                    <h2 class="section-heading">Transfer Certificate</h2>
+                    <p>Parents/Guardians can apply for a Transfer Certificate for their ward by following the process below:</p>
+
+                    <div class="tc-steps">
+                        <div class="tc-step">
+                            <div class="tc-step-num">1</div>
+                            <div>
+                                <h4>Submit Application</h4>
+                                <p>Submit a written application to the school office addressed to the Principal requesting T.C. for your ward.</p>
+                            </div>
+                        </div>
+                        <div class="tc-step">
+                            <div class="tc-step-num">2</div>
+                            <div>
+                                <h4>Clear Dues</h4>
+                                <p>Ensure all pending fees and dues are cleared before the T.C. can be issued.</p>
+                            </div>
+                        </div>
+                        <div class="tc-step">
+                            <div class="tc-step-num">3</div>
+                            <div>
+                                <h4>Return School Property</h4>
+                                <p>Return all school property including library books, ID card, and any other materials.</p>
+                            </div>
+                        </div>
+                        <div class="tc-step">
+                            <div class="tc-step-num">4</div>
+                            <div>
+                                <h4>Collect T.C.</h4>
+                                <p>The Transfer Certificate will be issued within 7 working days from the date of application.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tc-note">
+                        <i class="fas fa-info-circle"></i>
+                        <p><strong>Note:</strong> For any queries related to Transfer Certificate, please contact the school office at <strong>0543-2612688</strong> or <strong>9838173720</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo.png" alt="Logo">
+                        <h3>Gyandeep Public School</h3>
+                    </div>
+                    <p>A private co-educational English medium school located at Dharsauna Cholapur Varanasi. Nurturing young scholars since 2003.</p>
+                    <p style="font-size: 0.8rem;"><i class="fas fa-location-dot" style="color: var(--orange); margin-right: 6px;"></i>Dharsauna, Cholapur, Varanasi-221101</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="messages.html"><i class="fas fa-chevron-right"></i> Messages</a></li>
+                        <li><a href="academic.html"><i class="fas fa-chevron-right"></i> Academic</a></li>
+                        <li><a href="management.html"><i class="fas fa-chevron-right"></i> Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Facilities</h4>
+                    <ul>
+                        <li><a href="facilities.html"><i class="fas fa-chevron-right"></i> Library</a></li>
+                        <li><a href="facilities.html"><i class="fas fa-chevron-right"></i> Computer Lab</a></li>
+                        <li><a href="facilities.html"><i class="fas fa-chevron-right"></i> Music & Dance</a></li>
+                        <li><a href="facilities.html"><i class="fas fa-chevron-right"></i> Sports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Gallery</h4>
+                    <ul>
+                        <li><a href="photo-gallery.html"><i class="fas fa-chevron-right"></i> Photo Gallery</a></li>
+                        <li><a href="video-gallery.html"><i class="fas fa-chevron-right"></i> Video Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Mobile: 9838173720</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Helpline: 0543-2612688</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:manojkumarcholapur@gmail.com">manojkumarcholapur@gmail.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-globe"></i>
+                        <a href="#">www.gyandeeppublicschoolvns.in</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Gyandeep Public School Cholapur, Varanasi. All Rights Reserved. | Powered by: Sarthak Tech Pvt. Ltd.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
